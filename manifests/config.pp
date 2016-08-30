@@ -22,10 +22,12 @@ class postgrey::config() {
     }
   }
 
-  concat::fragment { 'postgrey/whitelist_clients':
-    target  => '/etc/postgrey/whitelist_clients',
-    order   => 15,
-    content => inline_template('<%= scope.lookupvar("postgrey::whitelist_clients").join("\n") %>')
+  if ($postgrey::whitelist_clients != []) {
+    concat::fragment { 'postgrey/whitelist_clients':
+      target  => '/etc/postgrey/whitelist_clients',
+      order   => 15,
+      content => inline_template('<%= scope.lookupvar("postgrey::whitelist_clients").join("\n") %>')
+    }
   }
 
   concat {
@@ -46,10 +48,12 @@ class postgrey::config() {
     }
   }
 
-  concat::fragment { 'postgrey/whitelist_recipients':
-    target  => '/etc/postgrey/whitelist_recipients',
-    order   => 15,
-    content => inline_template('<%= scope.lookupvar("postgrey::whitelist_recipients").join("\n") %>')
+  if ($postgrey::whitelist_recipients != []) {
+    concat::fragment { 'postgrey/whitelist_recipients':
+      target  => '/etc/postgrey/whitelist_recipients',
+      order   => 15,
+      content => inline_template('<%= scope.lookupvar("postgrey::whitelist_recipients").join("\n") %>')
+    }
   }
 }
 
