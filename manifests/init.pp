@@ -68,7 +68,8 @@ class postgrey(
     $omax_age = []
   }
 
-  $options = concat($oinet, $odelay, $omax_age, $oauto_whitelist_clients, $oretry_window).join(' ')
+  $options_array = concat($oinet, $odelay, $omax_age, $oauto_whitelist_clients, $oretry_window)
+  $options = $options_array.join(' ')
 
   if $extra_options != '' {
     if $options != '' {

@@ -2,10 +2,10 @@
 
 # WARNING - This file is managed by puppet, do not edit!
 
-POSTGREY_OPTS="<%= scope.lookupvar("postgrey::host") -%>"
+POSTGREY_OPTS="<%= scope.lookupvar("postgrey::final_options") -%>"
 
 <% if @osfamily != 'RedHat' %>
 # the --greylist-text commandline argument can not be easily passed through
 # POSTGREY_OPTS when it contains spaces.  So, insert your text here:
 #POSTGREY_TEXT="Your customized rejection message here"
-<% endif %>
+<% end %>

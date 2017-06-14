@@ -1,7 +1,3 @@
 # postgrey whitelist for mail recipients
 # --------------------------------------
-# put this file in /etc/postgrey or specify its path
-# with --whitelist-recipients=xxx
-
 # WARNING - This file is managed by puppet, DO NOT edit manually
-
