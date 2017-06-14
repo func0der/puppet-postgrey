@@ -3,7 +3,7 @@
 #
 class postgrey(
   $port                         = $postgrey::params::port,
-  $host                         = $postgrey::params::host',
+  $host                         = $postgrey::params::host,
   $enable                       = $postgrey::params::enable,
   $start                        = $postgrey::params::start,
   $default_whitelist_clients    = $postgrey::params::default_whitelist_clients,
@@ -22,55 +22,56 @@ class postgrey(
       $options_directory = 'sysconfig'
       $config_directory = 'postfix'
       $wlc_basename = 'postgrey_whitelist_clients'
-      $wlr_basebase = 'postgrey_whitelist_recipients'
+      $wlr_basename = 'postgrey_whitelist_recipients'
     }
     default: { # Debian
       $options_directory = 'default'
       $config_directory = 'postgrey'
       $wlc_basename = 'whitelist_clients'
-      $wlr_basebase = 'whitelist_recipients.local'
+      $wlr_basename = 'whitelist_recipients.local'
     }
   }
 
-  if $port && $host {
-    $oinet = ["--inet=${host}:${port}"]
-  }
-  else {
-    $oinet = []
+  $hostport = "${host}:${port}"
+
+  case $hostport {
+    /^:/: {  $oinet = [] }
+    /:$/: {  $oinet = [] }
+    default: { $oinet = ["--inet=${hostport}"] }
   }
 
-  if $delay {
+  if $delay != '' {
     $odelay = ["--delay=${delay}"]
   }
   else {
     $odelay = []
   }
 
-  if $max_age {
-    $omax_age = ["--max-age=${$max_age}"]
-  }
-  else {
-    $omax_age = []
-  }
-
-  if $auto_whitelist_clients {
+  if $auto_whitelist_clients != '' {
     $oauto_whitelist_clients = ["--auto-whitelist-clients=${auto_whitelist_clients}"]
   }
   else {
     $oauto_whitelist_clients = []
   }
 
-  if $retry_window {
-    $oretry_window = ["--auto-whitelist-clients=${retry_window}"]
+  if $retry_window != '' {
+    $oretry_window = ["--retry-window=${retry_window}"]
   }
   else {
     $oretry_window = []
   }
 
-  $options = concat($oinet, $odelay, $omax_age, $oauto_whitelist_clients, $oretry_window).join(" ")
+  if $max_age != '' {
+    $omax_age = ["--max-age=${max_age}"]
+  }
+  else {
+    $omax_age = []
+  }
 
-  if $extra_options != "" {
-    if $options != "" {
+  $options = concat($oinet, $odelay, $omax_age, $oauto_whitelist_clients, $oretry_window).join(' ')
+
+  if $extra_options != '' {
+    if $options != '' {
       $final_options = "${options} ${extra_options}"
     }
     else {
@@ -81,8 +82,8 @@ class postgrey(
     $final_options = $options
   }
 
-  class{'postgrey::install': } ->
-  class{'postgrey::config': } ~>
-  class{'postgrey::service': } ->
-  Class["postgrey"]
+  Class['postgrey']
+    -> class{'postgrey::install': }
+    -> class{'postgrey::config': }
+    -> class{'postgrey::service': }
 }

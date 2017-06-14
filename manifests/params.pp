@@ -3,12 +3,10 @@
 #
 class postgrey::params {
 
-  case $facts['os']['family'] {
+  case $facts['osfamily'] {
     'RedHat': {
-      $options_directory = '/etc/sysconfig'
-      $config_directory = '/etc/postfix'
-      $port = undef
-      $host = undef
+      $port = ''
+      $host = ''
       $enable = true
       $start = true
       $default_whitelist_clients = false
@@ -16,9 +14,9 @@ class postgrey::params {
       $default_whitelist_recipients = true
       $whitelist_recipients = []
       $delay = 60
-      $max_age = undef
-      $auto_whitelist_clients = undef
-      $retry_window = undef
+      $max_age = ''
+      $auto_whitelist_clients = ''
+      $retry_window = ''
       $extra_options = ''
     }
     default: { # Debian
