@@ -6,8 +6,8 @@ describe 'postgrey' do
   let(:facts) {
     {
         :os => {
-            :family => 'Debian',
-        },
+            :family => 'Debian'
+        }
     }
   }
 
