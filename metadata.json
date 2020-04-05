@@ -35,8 +35,8 @@
   ],
   "dependencies": [
     {
-      "name": "ripienaar/conca",
-      "version_requirement": ">= 0.2.0"
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 0"
     }
   ]
 }
