@@ -1,0 +1,42 @@
+{
+  "name": "func0der-postgrey",
+  "version": "0.0.3",
+  "author": "func0der",
+  "license": "Apache-2.0",
+  "summary": "A simple module for managing postgrey",
+  "source": "git://github.com/func0der/puppet-postgrey",
+  "project_page": "https://github.com/func0der/puppet-postgrey",
+  "issues_url": "https://github.com/func0der/puppet-postfix/issues",
+  "tags": [
+    "postfix",
+    "greylisting",
+    "mail"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "18",
+        "19"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=5 <7.0.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "ripienaar/conca",
+      "version_requirement": ">= 0.2.0"
+    }
+  ]
+}

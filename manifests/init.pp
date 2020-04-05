@@ -2,19 +2,19 @@
 # Class: postgrey
 #
 class postgrey(
-  $port                         = $postgrey::params::port,
-  $host                         = $postgrey::params::host,
-  $enable                       = $postgrey::params::enable,
-  $start                        = $postgrey::params::start,
-  $default_whitelist_clients    = $postgrey::params::default_whitelist_clients,
-  $whitelist_clients            = $postgrey::params::whitelist_clients,
-  $default_whitelist_recipients = $postgrey::params::default_whitelist_recipients,
-  $whitelist_recipients         = $postgrey::params::whitelist_recipients,
-  $delay                        = $postgrey::params::delay,
-  $max_age                      = $postgrey::params::max_age,
-  $auto_whitelist_clients       = $postgrey::params::auto_whitelist_clients,
-  $retry_window                 = $postgrey::params::retry_window,
-  $extra_options                = $postgrey::params::extra_options
+  Integer $port                         = $postgrey::params::port,
+  String $host                         = $postgrey::params::host,
+  Boolean $enable                       = $postgrey::params::enable,
+  Boolean $start                        = $postgrey::params::start,
+  Boolean $default_whitelist_clients    = $postgrey::params::default_whitelist_clients,
+  Array $whitelist_clients            = $postgrey::params::whitelist_clients,
+  Boolean $default_whitelist_recipients = $postgrey::params::default_whitelist_recipients,
+  Array $whitelist_recipients         = $postgrey::params::whitelist_recipients,
+  Integer $delay                        = $postgrey::params::delay,
+  Integer $max_age                      = $postgrey::params::max_age,
+  Integer $auto_whitelist_clients       = $postgrey::params::auto_whitelist_clients,
+  Integer $retry_window                 = $postgrey::params::retry_window,
+  String $extra_options                = $postgrey::params::extra_options
 ) inherits postgrey::params {
 
   case $facts['os']['family'] {
