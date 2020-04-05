@@ -22,10 +22,10 @@ group :test do
 end
 
 group :development do
-  gem 'guard-rake'          if RUBY_VERSION >= '2.2.5' # per dependency https://rubygems.org/gems/ruby_dep
+  gem 'guard-rake' if RUBY_VERSION >= '2.2.5' # per dependency https://rubygems.org/gems/ruby_dep
   gem 'puppet-blacksmith'
-  gem 'travis'              if RUBY_VERSION >= '2.1.0'
-  gem 'travis-lint'         if RUBY_VERSION >= '2.1.0'
+  gem 'travis' if RUBY_VERSION >= '2.1.0'
+  gem 'travis-lint' if RUBY_VERSION >= '2.1.0'
 end
 
 group :system_tests do
