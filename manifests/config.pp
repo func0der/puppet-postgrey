@@ -1,7 +1,7 @@
 #
 # Class: postgrey::config
 #
-class postgrey::config() {
+class postgrey::config () {
   file {
     "/etc/${postgrey::options_directory}/postgrey":
       content => template('postgrey/default.erb');
@@ -13,7 +13,7 @@ class postgrey::config() {
 
   concat::fragment { 'postgrey/whitelist_clients.local/header':
     target => "/etc/${postgrey::config_directory}/${postgrey::wlc_basename}.local",
-    order  => 00,
+    order  => 0,
     source => 'puppet:///modules/postgrey/whitelist_clients.header';
   }
 
@@ -30,7 +30,7 @@ class postgrey::config() {
     concat::fragment { 'postgrey/whitelist_clients.local':
       target  => "/etc/${postgrey::config_directory}/${postgrey::wlc_basename}.local",
       order   => 15,
-      content => inline_template('<%= scope.lookupvar("postgrey::whitelist_clients").join("\n") %><%= "\n" %>')
+      content => inline_template('<%= scope.lookupvar("postgrey::whitelist_clients").join("\n") %><%= "\n" %>'),
     }
   }
 
@@ -40,7 +40,7 @@ class postgrey::config() {
 
   concat::fragment { 'postgrey/whitelist_recipients.local/header':
     target => "/etc/${postgrey::config_directory}/${postgrey::wlr_basename}",
-    order  => 00,
+    order  => 0,
     source => 'puppet:///modules/postgrey/whitelist_recipients.header';
   }
 
@@ -56,7 +56,7 @@ class postgrey::config() {
     concat::fragment { 'postgrey/whitelist_recipients.local':
       target  => "/etc/${postgrey::config_directory}/${postgrey::wlr_basename}",
       order   => 15,
-      content => inline_template('<%= scope.lookupvar("postgrey::whitelist_recipients").join("\n") %><%= "\n" %>')
+      content => inline_template('<%= scope.lookupvar("postgrey::whitelist_recipients").join("\n") %><%= "\n" %>'),
     }
   }
 }
