@@ -11,9 +11,12 @@ require 'metadata-json-lint/rake_task'
 require 'rubocop/rake_task'
 require 'semantic_puppet'
 
-# These gems aren't always present, for instance
-# on Travis with --without development
-require 'puppet_blacksmith/rake_tasks' rescue nil
+begin
+  require 'puppet_blacksmith/rake_tasks'
+rescue LoadError
+  # These gems aren't always present, for instance
+  # on Travis with --without development
+end
 
 RuboCop::RakeTask.new
 
