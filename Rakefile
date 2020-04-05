@@ -13,10 +13,7 @@ require 'semantic_puppet'
 
 # These gems aren't always present, for instance
 # on Travis with --without development
-begin
-  require 'puppet_blacksmith/rake_tasks'
-rescue LoadError # rubocop:disable Lint/HandleExceptions
-end
+require 'puppet_blacksmith/rake_tasks' rescue nil
 
 RuboCop::RakeTask.new
 
