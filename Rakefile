@@ -47,7 +47,7 @@ end
 
 desc 'Populate CONTRIBUTORS file'
 task :contributors do
-  system('git log --format='%aN' | sort -u > CONTRIBUTORS')
+  system('git log --format="%aN | sort -u > CONTRIBUTORS')
 end
 
 desc 'Run syntax, lint, and spec tests.'
