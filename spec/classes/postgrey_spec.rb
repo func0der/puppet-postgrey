@@ -5,9 +5,9 @@ require 'spec_helper'
 describe 'postgrey' do
   let(:facts) {
     {
-        :os => {
-            :family => 'Debian'
-        }
+      :os => {
+        :family => 'Debian'
+      }
     }
   }
 
