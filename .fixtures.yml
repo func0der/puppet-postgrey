@@ -1,5 +1,7 @@
 fixtures:
   forge_modules:
-    concat: {}
+    concat:
+      repo: "puppetlabs/concat"
+      ref: "1.0.0"
   symlinks:
     postgrey: '#{source_dir}'
