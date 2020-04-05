@@ -3,11 +3,13 @@
 require 'spec_helper'
 
 describe 'postgrey' do
-  let(:facts) { {
-      :os => {
-          :family => 'Debian',
-      },
-  } }
+  let(:facts) {
+    {
+        :os => {
+            :family => 'Debian',
+        },
+    }
+  }
 
   it { should include_class('postgrey::config') }
   it { should include_class('postgrey::service') }
