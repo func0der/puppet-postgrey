@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rubygems'
 require 'bundler/setup'
 
@@ -23,7 +24,7 @@ exclude_paths = [
   'bundle/**/*',
   'pkg/**/*',
   'vendor/**/*',
-  'spec/**/*',
+  'spec/**/*'
 ]
 
 Rake::Task[:lint].clear
@@ -51,10 +52,10 @@ task :contributors do
 end
 
 desc 'Run syntax, lint, and spec tests.'
-task :test => [
+task 'test' => [
   :metadata_lint,
   :syntax,
   :lint,
   :rubocop,
-  :spec,
+  :spec
 ]
