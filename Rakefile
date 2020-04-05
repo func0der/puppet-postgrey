@@ -27,6 +27,8 @@ exclude_paths = [
   'spec/**/*'
 ]
 
+Rake::Task[:spec].clear
+
 Rake::Task[:lint].clear
 
 PuppetLint.configuration.relative = true
